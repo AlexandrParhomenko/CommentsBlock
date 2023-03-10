@@ -1,31 +1,56 @@
-const input = document.querySelector('.e-mail');
+const emailInput = document.querySelector('.e-mail');
 const error = document.getElementById('error');
+const nameError = document.getElementById('nameError');
+const messageError = document.getElementById('messageError');
 const submitButton = document.querySelector('.form-btn');
 const commentsList = document.querySelector('.comments-list');
 const currentName = document.getElementById('name')
 const currentMessage = document.getElementById('message')
 const currentDate = document.getElementById('date')
-const likePic = document.getElementById('like')
-
-const comments = [{name: 'adsd', date: 123123, comment: 'ddffwe'}, {
-  name: 'adsd',
-  date: 123123,
-  comment: 'ddffwe'
-}, {name: 'adsd', date: 123123, comment: 'ddffwe'},]
 
 
-input.onblur = function () {
-  if (!input.value.includes('@' && '.')) {
-    input.classList.add('invalid');
+currentName.onblur = function () {
+  if (!currentName.value) {
+    currentName.classList.add('invalid');
+    nameError.style.display = 'flex';
+    nameError.innerHTML = 'Пожалуйста, введите имя.'
+  }
+};
+
+currentName.onfocus = function () {
+  if (this.classList.contains('invalid')) {
+    this.classList.remove('invalid');
+    nameError.style.display = 'none';
+  }
+};
+
+emailInput.onblur = function () {
+  if (!emailInput.value.includes('@' && '.')) {
+    emailInput.classList.add('invalid');
     error.style.display = 'flex';
     error.innerHTML = 'Пожалуйста, введите правильный email.'
   }
 };
 
-input.onfocus = function () {
+emailInput.onfocus = function () {
   if (this.classList.contains('invalid')) {
     this.classList.remove('invalid');
     error.style.display = 'none';
+  }
+};
+
+currentMessage.onblur = function () {
+  if (!currentMessage.value.includes('@' && '.')) {
+    currentMessage.classList.add('invalid');
+    messageError.style.display = 'flex';
+    messageError.innerHTML = 'Пожалуйста, введите сообщение.'
+  }
+};
+
+currentMessage.onfocus = function () {
+  if (this.classList.contains('invalid')) {
+    this.classList.remove('invalid');
+    messageError.style.display = 'none';
   }
 };
 
@@ -63,7 +88,7 @@ const toggleLike = (img) => {
 }
 
 const createComment = () => {
-  if (currentName.value.length > 0 && currentMessage.value.length > 0 && !(input.classList.contains('invalid'))) {
+  if (currentName.value.length > 0 && currentMessage.value.length > 0 && !(emailInput.classList.contains('invalid'))) {
     const comment = document.createElement('div');
     const dataWrapper = document.createElement('div');
     const description = document.createElement('div');
@@ -86,7 +111,9 @@ const createComment = () => {
     btn.classList.add('delete-btn');
     dataWrapper.classList.add('userdata-wrapper');
     img.addEventListener('click', () => toggleLike(img))
-    btn.addEventListener('click', () => {comment.remove()});
+    btn.addEventListener('click', () => {
+      comment.remove()
+    });
     imgWrapper.append(img, btn);
     description.append(name, date);
     dataWrapper.append(description, imgWrapper);
