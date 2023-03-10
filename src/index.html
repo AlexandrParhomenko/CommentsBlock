@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Comments</title>
+  <link rel="stylesheet" href="script.css">
+</head>
+<body>
+<div class="formbold-main-wrapper">
+  <div class="chat-wrapper">
+    <div class="form-wrapper">
+      <div class="form-header">
+        <h3>Chat-box</h3>
+      </div>
+      <form class="chatbox-form">
+        <div class="block-wrapper">
+          <label for="name" class="form-label">Your Name</label>
+          <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Your Name"
+              class="form-input"
+          />
+        </div>
+
+        <div class="block-wrapper">
+          <label for="email" class="form-label">Email Address</label>
+          <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="example@domain.com"
+              class="form-input e-mail"
+          />
+          <div id="error">Пожалуйста, введите правильный email.</div>
+        </div>
+
+        <div class="block-wrapper">
+          <label for="message" class="form-label">Message</label>
+          <textarea
+              rows="6"
+              name="message"
+              id="message"
+              placeholder="Enter your message"
+              class="form-input"
+          ></textarea>
+        </div>
+
+        <div class="block-wrapper">
+          <label for="email" class="form-label">Date(optional)</label>
+          <input
+              type="date"
+              name="date"
+              id="date"
+              placeholder="example@domain.com"
+              class="form-input"
+              max="2023-12-31"
+          />
+        </div>
+        <div class="form-btn chat-wrapper">Submit</div>
+
+      </form>
+      <div class="comments-list">
+        <span>Comments:</span>
+      </div>
+    </div>
+  </div>
+</div>
+<script type='module' src="./script.js"></script>
+</body>
+</html>
