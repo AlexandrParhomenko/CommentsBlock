@@ -40,7 +40,7 @@ emailInput.onfocus = function () {
 };
 
 currentMessage.onblur = function () {
-  if (!currentMessage.value.includes('@' && '.')) {
+  if (!currentMessage.value) {
     currentMessage.classList.add('invalid');
     messageError.style.display = 'flex';
     messageError.innerHTML = 'Пожалуйста, введите сообщение.'
