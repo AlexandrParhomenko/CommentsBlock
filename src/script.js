@@ -1,9 +1,9 @@
-const emailInput = document.querySelector('.e-mail');
 const error = document.getElementById('error');
 const nameError = document.getElementById('nameError');
 const messageError = document.getElementById('messageError');
 const submitButton = document.querySelector('.form-btn');
 const commentsList = document.querySelector('.comments-list');
+const currentEmail = document.querySelector('.e-mail');
 const currentName = document.getElementById('name')
 const currentMessage = document.getElementById('message')
 const currentDate = document.getElementById('date')
@@ -24,15 +24,15 @@ currentName.onfocus = function () {
   }
 };
 
-emailInput.onblur = function () {
-  if (!emailInput.value.includes('@' && '.')) {
-    emailInput.classList.add('invalid');
+currentEmail.onblur = function () {
+  if (!currentEmail.value.includes('@' && '.')) {
+    currentEmail.classList.add('invalid');
     error.style.display = 'flex';
     error.innerHTML = 'Пожалуйста, введите правильный email.'
   }
 };
 
-emailInput.onfocus = function () {
+currentEmail.onfocus = function () {
   if (this.classList.contains('invalid')) {
     this.classList.remove('invalid');
     error.style.display = 'none';
@@ -68,6 +68,10 @@ const dateCalculate = (date) => {
   let minutes = now.getMinutes();
   minutes.toString().length === 1 ? minutes = `0${minutes}` : minutes;
   currentDate.value.toString().length === 0 ? date.textContent = Date.now().toString() : date.textContent = currentDate.value;
+  currentName.value = '';
+  currentMessage.value = ''
+  currentDate.value = ''
+  currentEmail.value = ''
   if (`${nowYear}-${nowMonth}-${nowDay}` === date.value || date.value.length === 0) {
     return `сегодня, ${hour}:${minutes}`;
   } else if (nowDay - date.value.substring(8, 10) === 1) {
@@ -88,7 +92,7 @@ const toggleLike = (img) => {
 }
 
 const createComment = () => {
-  if (currentName.value.length > 0 && currentMessage.value.length > 0 && !(emailInput.classList.contains('invalid'))) {
+  if (currentName.value.length > 0 && currentMessage.value.length > 0 && !(currentEmail.classList.contains('invalid'))) {
     const comment = document.createElement('div');
     const dataWrapper = document.createElement('div');
     const description = document.createElement('div');
